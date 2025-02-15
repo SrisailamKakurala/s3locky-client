@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     if (accessToken) {
       setIsAuthenticated(true);
       axios
-        .get("/api/auth/user", { headers: { Authorization: `Bearer ${accessToken}` } })
+        .get(`${import.meta.env.VITE_BACKEND_URL}/auth/user`, { headers: { Authorization: `Bearer ${accessToken}` } })
         .then((response) => setUser(response.data))
         .catch(() => {
           localStorage.removeItem("accessToken");
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         });
     } else if (refreshToken) {
       axios
-        .post("/api/auth/refresh", { refreshToken })
+        .post(`${import.meta.env.VITE_BACKEND_URL}/auth/refresh`, { refreshToken })
         .then((response) => {
           localStorage.setItem("accessToken", response.data.accessToken);
           setIsAuthenticated(true);

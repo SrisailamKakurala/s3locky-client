@@ -56,7 +56,7 @@ export default function Upload() {
       }
   
       // 1️⃣ Get Pre-Signed URL from backend
-      const { data } = await axios.get("http://localhost:5000/api/upload/get-presigned-url", {
+      const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/upload/get-presigned-url`, {
         params: {
           filename: selectedFile.name,
           fileType: encodeURIComponent(selectedFile.type), // ✅ Fix encoding issue
@@ -72,7 +72,7 @@ export default function Upload() {
       });
   
       // 3️⃣ Save metadata in MongoDB
-      await axios.post("http://localhost:5000/api/upload/save-file", {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/upload/save-file`, {
         filename: selectedFile.name,
         fileType: selectedFile.type,
         fileKey,

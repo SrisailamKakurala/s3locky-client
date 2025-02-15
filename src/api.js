@@ -10,7 +10,7 @@ const API = axios.create({
 // Signup API
 export const signup = async (email, password) => {
   try {
-    const response = await API.post("/signup", { email, password });
+    const response = await API.post("/auth/signup", { email, password });
     return response.data;
   } catch (error) {
     console.error("Signup Error:", error.response?.data || error.message);
@@ -21,7 +21,7 @@ export const signup = async (email, password) => {
 // Login API
 export const login = async (email, password) => {
   try {
-    const response = await API.post("/login", { email, password });
+    const response = await API.post("/auth/login", { email, password });
     return response.data;
   } catch (error) {
     console.error("Login Error:", error.response?.data || error.message);

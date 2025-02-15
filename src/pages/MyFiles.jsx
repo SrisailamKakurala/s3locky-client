@@ -19,7 +19,7 @@ export default function MyFiles() {
         return;
       }
 
-      const { data } = await axios.get(`http://localhost:5000/api/files/${userId}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/files/${userId}`);
       setFiles(data);
     } catch (error) {
       console.error("Error fetching files:", error);
@@ -34,7 +34,7 @@ export default function MyFiles() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/files/${fileId}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/files/${fileId}`);
       setFiles(files.filter(file => file._id !== fileId));
     } catch (error) {
       console.error("Error deleting file:", error);
