@@ -22,6 +22,8 @@ const LoginModal = ({ closeModal }) => {
   
     try {
       setLoading(true);
+
+      console.log("Sending data:", { email, password });
   
       // Use login or signup function from api.js
       const response = isLogin
